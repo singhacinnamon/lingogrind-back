@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'lingogrind.com',
+    'https://lingogrind.com',
     ]
 
 CORS_ALLOWED_ORIGINS = [
