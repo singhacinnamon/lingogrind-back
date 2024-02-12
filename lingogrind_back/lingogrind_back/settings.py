@@ -106,11 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://lingogrind.com',
+    'https://localhost:3000',
     ]
 
 CORS_ALLOWED_ORIGINS = [
     'https://lingogrind.com',
-    'http://localhost:3000',
+    'https://localhost:3000',
 ]
 
 # Internationalization
