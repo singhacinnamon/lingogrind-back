@@ -21,12 +21,13 @@ def home(request):
 # User/Auth Related Views
 # Receive a POST request containing a username and password
 # and attempts to log the user in
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class GetCSRFToken(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def get(self, request, format=None):
         return Response({'success': 'CSRF Cookie Set'})
-@method_decorator(ensure_csrf_cookie, name='dispatch')    
+@method_decorator(ensure_csrf_cookie, name='dispatch2')    
 def ling_login(request):
     if request.method == 'POST':    # Ensure correct request type (POST)
         form = LoginForm(request.POST)
