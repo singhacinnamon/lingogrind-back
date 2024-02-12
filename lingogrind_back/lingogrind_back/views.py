@@ -21,13 +21,14 @@ def home(request):
 # User/Auth Related Views
 # Receive a POST request containing a username and password
 # and attempts to log the user in
-@method_decorator(ensure_csrf_cookie, name='dispatch')
+@ensure_csrf_cookie
 class GetCSRFToken(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def get(self, request, format=None):
         return Response({'success': 'CSRF Cookie Set'})
-@method_decorator(ensure_csrf_cookie, name='dispatch2')    
+        
+@ensure_csrf_cookie   
 def ling_login(request):
     if request.method == 'POST':    # Ensure correct request type (POST)
         form = LoginForm(request.POST)
@@ -42,6 +43,7 @@ def ling_login(request):
         return JsonResponse({'message': 'Form Field(s) invalid'}, status=status.HTTP_401_UNAUTHORIZED)
     return JsonResponse({'message':'Not a POST request'}, status=status.HTTP_401_UNAUTHORIZED)
         
+@ensure_csrf_cookie        
 def ling_reg(request):
     if request.method == 'POST':
         username = json.loads(request.body)['username'] #json.loads converts request body to a python dict
@@ -65,6 +67,7 @@ def ling_logout(request):
 def get_user(request):
     return JsonResponse({'username': request.user.username})
 #Lesson Views
+
 class LessonView(generics.CreateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
