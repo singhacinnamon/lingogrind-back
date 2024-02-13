@@ -114,6 +114,10 @@ CSRF_TRUSTED_ORIGINS = [
     'https://localhost:3000',
     ]
 
+CSRF_COOKIE_DOMAIN = [
+    '.lingogrind.com'
+]
+
 CORS_ALLOWED_ORIGINS = [
     'https://lingogrind.com',
     'http://lingogrind.com',
