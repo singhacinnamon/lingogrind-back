@@ -26,8 +26,6 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost,.lingogrind.com").split(",")
-
 
 # Application definition
 
@@ -103,6 +101,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+ALLOWED_HOSTS = ["https://lingogrind.com"]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://lingogrind.com',
