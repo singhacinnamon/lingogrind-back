@@ -102,17 +102,29 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ALLOWED_HOSTS = ["https://lingogrind.com"]
+ALLOWED_HOSTS = [
+    'https://lingogrind.com',
+    'http://lingogrind.com',
+                ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://lingogrind.com',
+    'http://lingogrind.com',
     'https://localhost:3000',
     ]
 
 CORS_ALLOWED_ORIGINS = [
     'https://lingogrind.com',
+    'http://lingogrind.com',
     'https://localhost:3000',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+       'https://lingogrind.com',
+    'http://lingogrind.com',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
