@@ -21,12 +21,6 @@ def home(request):
 # User/Auth Related Views
 # Receive a POST request containing a username and password
 # and attempts to log the user in
-@ensure_csrf_cookie
-class GetCSRFToken(APIView):
-    permission_classes = (permissions.AllowAny, )
-
-    def get(self, request, format=None):
-        return Response({'success': 'CSRF Cookie Set'})
         
 @ensure_csrf_cookie   
 def ling_login(request):

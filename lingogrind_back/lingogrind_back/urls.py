@@ -26,6 +26,5 @@ urlpatterns = [
     path('ling_login/', ling_login, name="ling_login"),
     path('ling_reg/', ling_reg, name="ling_reg"),
     path('get_user/', get_user, name="get_user"),
-    path('csrf_cookie', GetCSRFToken.as_view()),
     path('ling_logout', ling_logout, name="ling_logout")
 ]
