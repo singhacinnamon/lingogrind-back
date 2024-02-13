@@ -105,6 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ALLOWED_HOSTS = [
     'https://lingogrind.com',
     'http://lingogrind.com',
+    'api.lingogrind.com',
                 ]
 
 CSRF_TRUSTED_ORIGINS = [
