@@ -115,7 +115,11 @@ CSRF_TRUSTED_ORIGINS = [
     ]
 
 CSRF_COOKIE_DOMAIN = [
-    '.lingogrind.com'
+    '.lingogrind.com',
+    'https://*.lingogrind.com',
+    'https://api.lingogrind.com',
+    'https://lingogrind.com',
+    'lingogrind.com'
 ]
 
 CORS_ALLOWED_ORIGINS = [
