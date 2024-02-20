@@ -26,10 +26,14 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
+ALLOWED_HOSTS = [
+    '.lingogrind.com',
+    ]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'lingogrind_back.apps.ApiConfig',
     'rest_framework',
 ]
 
@@ -102,32 +105,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ALLOWED_HOSTS = [
-    'https://lingogrind.com',
-    'http://lingogrind.com',
-    'api.lingogrind.com',
-                ]
+CSRF_COOKIE_DOMAIN = '.lingogrind.com'
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://*.lingogrind.com',
     'https://lingogrind.com',
-    'http://lingogrind.com',
-    'https://localhost:3000',
-    ]
-
-CSRF_COOKIE_DOMAIN = '.lingogrind.com'
+]
 
 CORS_ALLOWED_ORIGINS = [
     'https://lingogrind.com',
-    'http://lingogrind.com',
-    'https://localhost:3000',
+    'http://localhost:8000',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = (
-       'https://lingogrind.com',
-    'http://lingogrind.com',
-)
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
