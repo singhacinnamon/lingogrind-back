@@ -2,6 +2,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.middleware.csrf import get_token
 from rest_framework import status
+from rest_framework.views import APIView
+from .serializers import LessonSerializer
 
 @ensure_csrf_cookie
 def get_csrf(request):
@@ -50,3 +52,15 @@ def ling_logout(request):
 
 def get_user(request):
     return JsonResponse({'username': request.user.username})
+
+# Database Access Views (API)
+
+class GetLesson(APIView):
+    serializer_class = LessonSerializer
+    lookup_url_kwarg = 'lang'
+
+    def get(self, request, format=None):
+        lang=request.GET.get(self.lookup_url_kwarg)
+        Lsns = Lesson.objects.filter(lang=lang).order_by("prio").values()
+        data = LessonSerializer(Lsns, many=True).data
+        return Response(data, status=status.HTTP_200_OK)
