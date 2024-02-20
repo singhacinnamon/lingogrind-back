@@ -4,6 +4,7 @@ from django.middleware.csrf import get_token
 from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import LessonSerializer
+from .models import Lesson
 
 @ensure_csrf_cookie
 def get_csrf(request):
