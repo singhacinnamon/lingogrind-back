@@ -56,6 +56,7 @@ def ling_logout(request):
     logout(request)
     return JsonResponse({'message': 'Logged out'}, status=status.HTTP_200_OK)
 
+@ensure_csrf_cookie
 def get_user(request):
     return JsonResponse({'username': request.user.username})
 
