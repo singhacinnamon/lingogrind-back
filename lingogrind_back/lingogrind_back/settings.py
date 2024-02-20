@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CSRF_COOKIE_DOMAIN = '.lingogrind.com'
+CSRF_COOKIE_DOMAIN = 'lingogrind.com'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.lingogrind.com',
