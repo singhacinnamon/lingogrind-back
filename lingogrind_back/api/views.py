@@ -9,7 +9,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import LessonSerializer
 from .models import Lesson
-from .forms import LoginForm
 
 @ensure_csrf_cookie
 def get_csrf(request):
