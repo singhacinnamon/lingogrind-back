@@ -24,25 +24,21 @@ def get_csrf(request):
         
 def ling_login(request):
     if request.method == 'POST':    # Ensure correct request type (POST)
-        form = LoginForm(request.POST)
-        if(form.isValid()): # Use Django form validation to ensure valid field entry
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            user = authenticate(request, username=username, password=password)
-            if user is not None:    # AKA if user was logged in
-                login(request, user)
-                return JsonResponse({'message': 'Login successful'}, status=status.HTTP_200_OK)
-            return JsonResponse({'message':'Username and password did not match'}, status.HTTP_401_UNAUTHORIZED)
-        return JsonResponse({'message': 'Form Field(s) invalid'}, status=status.HTTP_401_UNAUTHORIZED)
+        body = json.loads(request.body)
+        username = body["username"].strip()
+        password = body["password"].strip()
+        user = authenticate(request, username=username, password=password)
+        if user is not None:    # i.e. if user was logged in
+            login(request, user)
+            return JsonResponse({'message': 'Login successful'}, status=status.HTTP_200_OK)
+        return JsonResponse({'message':'Username and password did not match'}, status=status.HTTP_401_UNAUTHORIZED)
     return JsonResponse({'message':'Not a POST request'}, status=status.HTTP_401_UNAUTHORIZED)
         
 def ling_reg(request):
     if request.method == 'POST':
-        username = json.loads(request.body)['username'] #json.loads converts request body to a python dict
-        password = json.loads(request.body)['password']
-
-        print(f"Received username: {username}, password: {password}")
-        print('Raw Data: "%s"' % request.body)
+        body = json.loads(request.body) #json.loads converts request body to a python dict
+        username = body['username'].strip()
+        password = body['password'].strip()
 
         user = User.objects.create_user(username=username, password=password)
 
