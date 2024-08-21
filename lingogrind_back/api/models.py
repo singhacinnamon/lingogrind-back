@@ -1,4 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
+
+# Lesson model holds the data for each lesson that is necessary to dynamically load React components
 
 class Lesson(models.Model):
     # Lang represented by intl. 2 character standard language code as defined here https://www.loc.gov/standards/iso639-2/php/code_list.php
@@ -16,3 +22,12 @@ class Lesson(models.Model):
     def __str__(self):
         return self.name
     
+
+# UserProfile class is used to associate fields with an individual user without having to create a custom user class
+    
+class UserProfile(models.Model):
+    # User associated with this UserProfile instance. 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    # The lessons this user has marked as read
+    lessons_read = models.ManyToManyField(Lesson)
