@@ -54,7 +54,7 @@ def ling_reg(request):
 @api_view(['GET'])
 def ling_logout(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return Response(status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @ensure_csrf_cookie
@@ -87,8 +87,8 @@ def set_read(request):
     if request.user is None or not request.user.is_authenticated:
         return Response([], status=status.HTTP_401_UNAUTHORIZED)
     user_profile = request.user.userprofile
-    file = request.data.get("file")
-    mode = request.data.get("mode")
+    file = request.data.get("file") #Specifies which lesson
+    mode = request.data.get("mode") #Specifies whether it should be marked as read ("add") or unread ("remove")
     if(mode == "add"):
         user_profile.lessons_read.add(Lesson.objects.get(file=file))
     else:
